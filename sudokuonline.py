@@ -12,7 +12,7 @@ from sudoku_solver_csp import SudokuSolverCSP
 
 
 def main():
-    url = "https://www.sudokuonline.io/impossible"
+    url = "https://www.sudokuonline.io/easy"
 
     service = Service()  # Optional: add path to chromedriver
     options = webdriver.ChromeOptions()
@@ -21,6 +21,7 @@ def main():
 
     try:
         driver.get(url)
+        driver.add_cookie({"name":"sessionid", "value":"qp0vut0ku2h1p4v40wvxrwfycjqmvqbr", "path":"/"})
         while True:
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.ID, "sudoku"))
@@ -55,7 +56,7 @@ def main():
                     if "fixed" in classes:
                         #for evading bot detection
                         if not has_waited:
-                            time.sleep(70)
+                            #time.sleep(70)
                             has_waited = True
                         continue
                     row = int(cell.get_attribute("data-row"))

@@ -46,7 +46,8 @@ class SudokuSolver:
         solved = self._solve_recursive()
         end_time = time.time()
         print(f"solve time: {round((end_time - start_time) * 1000, 5)}ms")
-        return solved
+        solve_time = end_time-start_time
+        return solved, solve_time
 
     def _solve_recursive(self):
         cell, options = self.find_most_constrained_cell()
